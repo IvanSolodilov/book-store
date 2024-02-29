@@ -119,7 +119,10 @@
 
         <li class="list-group-item d-flex justify-content-between">
           <span>Всего: </span>
-          <strong>2700руб.</strong>
+          <strong><?
+          $summa = 2700;
+          echo $summa . ' руб.' ?></strong
+         
         </li>
       </ul>
 
