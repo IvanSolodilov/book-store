@@ -131,7 +131,7 @@ include 'inc/config.php';
               <div class="card-body">
                 <img height="100px"
                   src="<?= 'data:image/png;base64,' . base64_encode(file_get_contents($value['cover_image'])) ?>"
-                  alt="...">
+                  alt="<?= $value['title'] ?>">
                 <h3 class="card-title">
                   <?= $value['title'] ?>
                 </h3>

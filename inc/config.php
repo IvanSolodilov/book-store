@@ -40,10 +40,36 @@ switch ($url) {
     break;
 }
 
-$hours = date('H');
-$color1;
+$d = date('N');
+$day;
 
+switch ($d) {
+  case '1':
+    $day = 'Сегодня: Понедельник';
+    break;
+  case '2':
+    $day = 'Сегодня: Вторник';
+    break;
+  case '3':
+    $day = 'Сегодня: Среда';
+    break;
+  case '4':
+    $day = 'Сегодня: Четверг';
+    break;
+  case '5':
+    $day = 'Сегодня: Пятница';
+    break;
+  case '6':
+    $day = 'Сегодня: Суббота';
+    break;
+  case '7':
+    $day = 'Сегодня: Воскресенье';
+    break;
 
+  default:
+    # code...
+    break;
+}
 
 
 
