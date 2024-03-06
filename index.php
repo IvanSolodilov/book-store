@@ -124,7 +124,11 @@ include 'inc/config.php';
         } ?> -->
 
         <div class="card-deck2">
+        <?php
 
+$limit = 6; // Желаемое количество элементов для вывода          
+$count = 0; // Инициализация счетчика
+?>
           <?php foreach ($books as $key => $value): ?>
 
             <div class="card">
@@ -146,6 +150,11 @@ include 'inc/config.php';
                 <a href="/?add=<?= $value['id'] ?>"> <button type="button" class="btn btn-primary">В корзину</button></a>
               </div>
             </div>
+            <?php $count++; ?>
+
+<?php if ($count >= $limit) {
+  break; // Прерываем цикл после достижения желаемого количества элементов
+} ?>
           <?php endforeach ?>
 
         </div>
