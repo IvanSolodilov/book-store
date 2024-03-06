@@ -1,8 +1,8 @@
 <?
 $menu = [
-    'Доставка' => 'delivery.php',
-    'Войти' => 'login.php',
-    'Корзина' => 'basket.php',
-    'Контакты' => 'contacts.php'
+    'Доставка' => '?page=delivery',
+    'Войти' => '?page=login',
+    'Корзина' => '?page=basket',
+    'Контакты' => '?page=contacts'
   ];
 

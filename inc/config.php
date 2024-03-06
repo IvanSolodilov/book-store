@@ -7,6 +7,8 @@ $lastName = 'Ivanov';
 $email = 'john@yandex.ru';
 $address = 'USA, NY, 123 Main St';
 
+const orders = 'orders.txt';
+
 $successOrder = 'firstName';
 $categories = ['Программирование', 'Сказки', 'Детективы', 'Фантастика'];
 $publisher = ['Эксмо', 'ИД Питер', 'OReily'];
@@ -71,8 +73,30 @@ switch ($d) {
     break;
 }
 
+function saveOrder($firstName , $lastName , $email , $address) {
+  //echo $firstName . $lastName . $email . $address;
+  file_put_contents(orders,  $firstName. ' '. $lastName. ' '. $email. ' '. $address);
+}
 
+saveOrder('Ivan','Ivanov','my@mail.ru','USA');
 
+$order = file_get_contents('orders.txt');
+$ord = explode(' ', $order);
+print_r($ord);
+
+print_r ($_SERVER['QUERY_STRING']);
+
+$page = $_SERVER['QUERY_STRING'];
+
+switch ($page) {
+  case 'page=delivery':
+    include 'delivery.php';
+    break;
+  
+  default:
+    # code...
+    break;
+}
 
 
 

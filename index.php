@@ -1,5 +1,6 @@
 <? include 'inc/menu.inc.php';
 include 'inc/config.php';
+
 ?>
 <!doctype html>
 <html lang="en">
