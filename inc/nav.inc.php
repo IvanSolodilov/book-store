@@ -1,3 +1,12 @@
+<?php 
+$menu = [
+  'Доставка' => '?page=delivery',
+  'Войти' => '?page=login',
+  'Корзина' => '?page=basket',
+  'Контакты' => '?page=contacts'
+];
+
+?>
 <style>
   .bg-light {
     background-image: url(<?php echo (date('H') > 18) ? 'img/nighr.gif' : 'img/sun.gif' ?>) !important;

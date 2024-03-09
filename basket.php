@@ -1,5 +1,18 @@
-<? include 'inc/menu.inc.php';
-include 'inc/config.php';
+<?php 
+const orders = 'orders.txt';
+
+function saveOrder($firstName, $lastName, $email, $address)
+{
+  //echo $firstName . $lastName . $email . $address;
+  file_put_contents(orders, $firstName . ' ' . $lastName . ' ' . $email . ' ' . $address);
+}
+
+saveOrder('Ivan', 'Ivanov', 'my@mail.ru', 'USA');
+
+$order = file_get_contents('orders.txt');
+$ord = explode(' ', $order);
+print_r($ord);
+
 ?>
 
 <!doctype html>

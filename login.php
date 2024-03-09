@@ -1,5 +1,5 @@
-<? include 'inc/menu.inc.php'; 
-   include 'inc/config.php';
+<? 
+include 'inc/nav.inc.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -43,7 +43,7 @@
   <body>
 
    
-  <?php include 'inc/nav.inc.php' ?>
+
 
 <div class="container">
 

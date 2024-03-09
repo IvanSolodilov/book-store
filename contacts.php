@@ -1,7 +1,3 @@
-<? include 'inc/menu.inc.php';
-include 'inc/config.php';
-?>
-
 <!doctype html>
 <html lang="en">
 
@@ -48,10 +44,14 @@ include 'inc/config.php';
 
 <body>
 
-<?php include 'inc/nav.inc.php' ?>
+  <?php include 'inc/nav.inc.php' ?>
 
   <div class="container">
-    <h1><h1><?=$h1?></h1></h1>
+    <h1>
+      <h1>
+        <?= $h1 ?>
+      </h1>
+    </h1>
 
     <div class="row">
       <div class="col-md-6">
