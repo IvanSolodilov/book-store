@@ -1,5 +1,10 @@
 <?php 
+
+
+
 const orders = 'orders.txt';
+//print_r([$_GET]);
+
 
 function saveOrder($firstName, $lastName, $email, $address)
 {
@@ -7,13 +12,15 @@ function saveOrder($firstName, $lastName, $email, $address)
   file_put_contents(orders, $firstName . ' ' . $lastName . ' ' . $email . ' ' . $address);
 }
 
-saveOrder('Ivan', 'Ivanov', 'my@mail.ru', 'USA');
+saveOrder($_GET['name'], $_GET['surname'], $_GET['email'], $_GET['adress']);
 
 $order = file_get_contents('orders.txt');
 $ord = explode(' ', $order);
-print_r($ord);
+//print_r($ord);
 
 ?>
+
+
 
 <!doctype html>
 <html lang="en">
@@ -56,19 +63,21 @@ print_r($ord);
         </h4>
         <ul class="list-group mb-3">
 
-          <?php
+       
 
-          $limit = 3; // Желаемое количество элементов для вывода          
-          $count = 0; // Инициализация счетчика
-          ?>
-
-          <?php foreach ($books as $key => $value) { ?>
+         
 
 
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 class="my-0">
-                  <?= $value['title'] ?>
+                  <?
+                
+
+                  print_r($books[$_SESSION['basket']]['title']);
+
+                  
+                  ?>
                 </h6>
                 <small class="text-muted">
                   <?= $value['description'] ?>
@@ -78,14 +87,9 @@ print_r($ord);
               <span class="text-muted">1500руб.</span>
               <span><a href="#delete" class="btn btn-success btn-sm ">Удалить</a></span>
             </li>
+         
 
-            <?php $count++; ?>
-
-            <?php if ($count >= $limit) {
-              break; // Прерываем цикл после достижения желаемого количества элементов
-            } ?>
-
-          <?php } ?>
+         
 
 
 
@@ -101,20 +105,22 @@ print_r($ord);
         </ul>
 
       </div>
+
+
       <div class="col-md-6 order-md-1">
         <h4 class="mb-3">Информация</h4>
-        <form class="needs-validation" novalidate>
+        <form action="/form.php" method = "GET" class="needs-validation" novalidate>
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="firstName">Имя</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <input type="text" name = "name" class="form-control" id="firstName" placeholder="<?= $_SESSION['name']?>" value="" required>
               <div class="invalid-feedback">
                 Укажите корректное имя
               </div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="lastName">Фамилия</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+              <input type="text" name = "surname" class="form-control" id="lastName" placeholder="" value="" required>
               <div class="invalid-feedback">
                 Укажите корректную фамилию
               </div>
@@ -123,7 +129,7 @@ print_r($ord);
 
           <div class="mb-3">
             <label for="email">Email <span class="text-muted">(опционально)</span></label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com">
+            <input type="email" name = "email" class="form-control" id="email" placeholder="you@example.com">
             <div class="invalid-feedback">
               Укажите корректный email
             </div>
@@ -131,86 +137,11 @@ print_r($ord);
 
           <div class="mb-3">
             <label for="address">Адрес доставки</label>
-            <input type="text" class="form-control" id="address" placeholder="город, улица, дом, квартира" required>
+            <input type="text" name = "adress" class="form-control" id="address" placeholder="город, улица, дом, квартира" required>
             <div class="invalid-feedback">
               Укажите адрес доставки
             </div>
-          </div>
-          <!--
-        <hr class="mb-4">
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="same-address">
-          <label class="custom-control-label" for="same-address">Запомнить адрес доставки как основной адрес</label>
-        </div>
-        <hr class="mb-4">
-
-        <h4 class="mb-3">Интервал времени</h4>
-
-        <div class="row">
-          <div class="col-md-5 mb-3">
-            <label for="country">Часть недели</label>
-            <select class="custom-select d-block w-100" id="country" required>
-              <option value="">Выберите...</option>
-              <option>Рабочие дни (пн-пт)</option>
-              <option>Выходные (сб-вс)</option>
-            </select>
-            <div class="invalid-feedback">
-              Please select a valid country.
-            </div>
-          </div>
-        </div>
-
-        <div class="d-block my-3">
-          <div class="custom-control custom-radio">
-            <input id="credit" name="deliveryInterval" type="radio" class="custom-control-input" checked required value="1">
-            <label class="custom-control-label" for="credit">с 8 до 13</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input id="debit" name="deliveryInterval" type="radio" class="custom-control-input" required value="2">
-            <label class="custom-control-label" for="debit">с 13 до 18</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input id="paypal" name="deliveryInterval" type="radio" class="custom-control-input" required value="3">
-            <label class="custom-control-label" for="paypal">с 18 до 23</label>
-          </div>
-        </div>
-        <hr class="mb-4">
-        <h4 class="mb-3">Платёжная информация</h4>
--->
-          <!-- ВНИМАНИЕ! Не храните платёжную информацию на своём сервере -->
-          <!--        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="cc-name">Имя на карте</label>
-            <input type="text" class="form-control" id="cc-name" placeholder="" required>
-            <small class="text-muted">Полностью как на карте</small>
-            <div class="invalid-feedback">
-              Укажите имя на карте
-            </div>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="cc-number">Номер кредитной карты</label>
-            <input type="text" class="form-control" id="cc-number" placeholder="" required>
-            <div class="invalid-feedback">
-              Должен быть указан номер кредитной карты
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 mb-6">
-            <label for="cc-expiration">Срок действия до</label>
-            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-            <div class="invalid-feedback">
-              Укажите срок действия
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="cc-cvv">CVV</label>
-            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-            <div class="invalid-feedback">
-              Укажите секретный код CVV
-            </div>
-          </div>
-        </div> -->
+          </div>    
           <hr class="mb-4">
           <button class="btn btn-primary btn-lg btn-block" type="submit">Оформить заказ!</button>
         </form>

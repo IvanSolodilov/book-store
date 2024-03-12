@@ -1,6 +1,18 @@
 <?php
+
+
 $books = json_decode(file_get_contents('https://freetestapi.com/api/v1/books'), true);
 //print_r($books);
+
+
+session_start();
+$_SESSION['basket'];
+echo $_SESSION['basket'];
+
+echo session_name(), '<hr />';
+echo session_id(), '<hr />';
+
+
 
 $firstName = 'John';
 $lastName = 'Ivanov';
@@ -9,9 +21,32 @@ $address = 'USA, NY, 123 Main St';
 
 
 
+
 $successOrder = 'firstName';
 $categories = ['Программирование', 'Сказки', 'Детективы', 'Фантастика'];
 $publisher = ['Эксмо', 'ИД Питер', 'OReily'];
+
+$page = $_SERVER['QUERY_STRING'];
+switch ($page) {
+  case 'page=delivery':
+    include 'delivery.php';
+    break;
+  case 'page=basket':
+    include_once 'basket.php';
+    break;
+  case 'page=contacts':
+    include 'contacts.php';
+    break;
+  case 'page=login':
+    include 'login.php';
+    break;
+
+  default: 
+  case '/':
+    include_once 'main.php';
+  break;
+ 
+}
 
 $url = $_SERVER['PHP_SELF'];
 
@@ -75,30 +110,9 @@ switch ($d) {
 
 
 
-print_r($_SERVER['QUERY_STRING']);
 
-$page = $_SERVER['QUERY_STRING'];
 
-switch ($page) {
-  case 'page=delivery':
-    include 'delivery.php';
-    break;
-  case 'page=basket':
-    include 'basket.php';
-    break;
-  case 'page=contacts':
-    include 'contacts.php';
-    break;
-  case 'page=login':
-    include 'login.php';
-    break;
 
-  default: 
-  case '/':
-  include 'main.php';
-  break;
- 
-}
 
 
 

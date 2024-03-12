@@ -140,7 +140,7 @@
                 </p>
               </div>
               <div class="card-footer">
-                <a href="/?add=<?= $value['id'] ?>"> <button type="button" class="btn btn-primary">В корзину</button></a>
+                <a href="/?add=<?= $value['id'] ?> "> <button type="button" class="btn btn-primary">В корзину</button></a>
               </div>
             </div>
             <?php $count++; ?>
