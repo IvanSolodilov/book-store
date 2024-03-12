@@ -6,7 +6,7 @@ $books = json_decode(file_get_contents('https://freetestapi.com/api/v1/books'), 
 
 
 session_start();
-$_SESSION['basket'];
+$_SESSION['basket'] = $_GET['add'];
 echo $_SESSION['basket'];
 
 echo session_name(), '<hr />';
